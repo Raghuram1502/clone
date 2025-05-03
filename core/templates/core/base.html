@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Clone</title>
+  <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+  <h1><a href="{% url 'index' %}">Clone</a></h1>
+  <nav>
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout_view' %}" style="display:inline;">
+        {% csrf_token %}
+        <p>Welcome, {{ user.username }} | <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+        
+      </form>
+      
+    {% else %}
+      <a href="{% url 'login_view' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </nav>
+  
+  {% block content %}{% endblock %}
+</body>
+</html>

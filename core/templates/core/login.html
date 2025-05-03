@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h2>Login</h2>
+{% if message %}
+    {{message}}
+{% endif %}
+<form action = "{% url 'login_view' %}" method="post">
+  {% csrf_token %}
+  <label for="username">Username : </label>
+  <input type="text" name="username" placeholder="username">
+  <label for="Password">Password : </label>
+  <input type="password" name="password" placeholder="Password">
+  <input type="submit" value="login">
+</form>
+<p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+{% endblock %}
